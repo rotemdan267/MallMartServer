@@ -1,12 +1,7 @@
 ﻿using MallMartDB.Models;
 using MallMartLogic;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MallMartDB
 {
@@ -342,7 +337,9 @@ namespace MallMartDB
             FileStream stream;
             BinaryReader br;
             byte[] image = null;
-            string pathStart = @"C:\Users\User\Desktop\האקר-יו\MallMart\MallMartServer\MallMartDB\assests\";
+
+            //string pathStart = @"C:\Users\User\Desktop\האקר-יו\MallMart\MallMartServer\MallMartDB\assests\";
+            string pathStart = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\..\MallMartDB\assests\";
             string pathEnd = @"-image.jpg";
             string path;
 

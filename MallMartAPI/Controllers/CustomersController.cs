@@ -65,6 +65,17 @@ namespace MallMartAPI.Controllers
                 return NotFound();
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromRoute] int id, [FromBody] Customer item)
+        {
+            bool updated = await dBManager.UpdateCustomerDetails(item);
+
+            if (updated)
+                return Ok();
+            else
+                return NotFound();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

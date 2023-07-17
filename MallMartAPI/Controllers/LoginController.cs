@@ -2,15 +2,12 @@
 using MallMartAPI.Repos;
 using MallMartDB.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
 
 namespace MallMartAPI.Controllers
 {

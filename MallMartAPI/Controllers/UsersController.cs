@@ -62,6 +62,16 @@ namespace MallMartAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] User item)
         {
+            if (item.HashedPassword == "")
+            {
+                var user = await repo.GetById(id);
+                item.HashedPassword = user.HashedPassword;
+            }
+            else
+            {
+                PasswordHasher<User> hasher = new PasswordHasher<User>();
+                item.HashedPassword = hasher.HashPassword(item, item.HashedPassword);
+            }
             bool updated = await repo.Update(id, item);
 
             if (updated)

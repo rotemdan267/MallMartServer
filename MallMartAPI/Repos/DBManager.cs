@@ -1,12 +1,5 @@
-﻿using MallMartDB;
-using MallMartDB.Models;
+﻿using MallMartDB.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MallMartAPI.Repos
 {
     // קלאס עבור שאר ה-
@@ -287,18 +280,42 @@ namespace MallMartAPI.Repos
 
         }
 
-        // לא ברור למה בניתי אותה בנפרד ולא השתמשתי בג'נריק ריפו
         public async Task UpdatePrudct(Product product)
         {
             db.Update(product);
             await db.SaveChangesAsync();
         }
 
-        // לא ברור למה בניתי אותה בנפרד ולא השתמשתי בג'נריק ריפו
         public async Task UpdateAddress(Address address)
         {
             db.Addresses.Update(address);
             await db.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// This function's job is to update customer details that does not include "orders" ,"address", or "user" details 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateCustomerDetails(Customer customer)
+        {
+            Customer exists = await db.Customers.Where(p => p.CustomerId == customer.CustomerId)
+                .Include(c => c.Orders).FirstOrDefaultAsync();
+
+            if (exists is null)
+            {
+                return false;
+            }
+            else
+            {
+                exists.PaymentMethod = customer.PaymentMethod;
+                exists.PaymentDetails = customer.PaymentDetails;
+
+                db.Customers.Update(exists);
+                await db.SaveChangesAsync();
+
+                return true;
+            }
         }
 
         #endregion

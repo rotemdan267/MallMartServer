@@ -29,5 +29,11 @@ namespace MallMartAPI.Repos
         Task UpdateAddress(Address address);
         Task UpdatePrudct(Product product);
         Task UpdatePrudctQuantity(int id, int onOrder);
+        /// <summary>
+        ///This function's job is to update customer details that does not include "orders" ,"address", or "user" details 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        Task<bool> UpdateCustomerDetails(Customer customer);
     }
 }
