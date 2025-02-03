@@ -13,19 +13,16 @@
 
 לנוחיותך, משתמשים מוכנים שתוכל להיכנס דרכם למערכת:
    
-לקוחות: 
+לקוחות:
 
-   Username:  Shovav
-   
+   Username:  Shovav  
    Password:  805060
    
-   Username:  Mor123
-   
+   Username:  Mor123  
    Password:  465984
    
 מנהל:
    
-   Username:  rotemdan
-   
+   Username:  rotemdan  
    Password:  123456
 
