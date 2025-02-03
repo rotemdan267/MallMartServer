@@ -8,14 +8,15 @@ namespace MallMartDB.Models
         public Customer Customer { get; set; }
         public DateTime? DateOrdered { get; set; }
 
-        // נאפשר ללקוח לבחור מתי המשלוח יגיע אליו, בטווח בין הזמן הראשון לאחרון
+        // We'll let our customer choose when to get his delivery.
+        // The choice will be a range of time between DueTimeFirst and DueTimeLast
         public DateTime? DueTimeFirst { get; set; }
         public DateTime? DueTimeLast { get; set; }
 
-        // מתי המשלוח הגיע בפועל
+        // When did the delivery actually arrived
         public DateTime? ArrivalTime { get; set; }
 
-        // השליח שיספק את ההזמנה
+        // The employee assinged to deliver this order
         public int? EmployeeId { get; set; }
 
         public float? TotalPrice { get; set; }

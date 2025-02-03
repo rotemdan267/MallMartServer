@@ -31,10 +31,29 @@ namespace MallMartAPI.Controllers
             return Ok(items);
         }
 
+        [HttpGet("filtered")]
+        public async Task<IActionResult> GetAllFiltered([FromHeader(Name = "filterBy")] string filterBy)
+        {
+            List<Product> items = new List<Product>();
+
+            if (filterBy == "AlmostOutOfStock")
+                items = await DbManager.GetProductsAlmostOutOfStock();
+
+            if (filterBy == "RatedHigh")
+                items = await DbManager.GetProductsRatedHigh();
+
+            if (items.Count() == 0)
+            {
+                return NotFound();
+            }
+            return Ok(items);
+        }
+
+        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            //var item = await repo.GetById(id);
             var item = await DbManager.GetProductById(id);
             if (item is null)
             {

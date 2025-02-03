@@ -60,8 +60,8 @@ namespace MallMartAPI.Controllers
                     jwt = token
                 });
             }
-            // if the user exists but he's not a customer or manager he is denied for now,
-            // because I havn't built the pages for him yet
+            // if the user exists but he's not a customer or manager - then he's a worker
+            // and I havn't built the pages for him yet so "under construction"
             return Unauthorized("Site is under construction");
         }
 
@@ -85,7 +85,6 @@ namespace MallMartAPI.Controllers
             var jwt = new JwtSecurityToken(
                 audience: _config["Jwt:Audience"],
                 issuer: _config["Jwt:Issuer"],
-                //claims: new Claim[] { new Claim(ClaimTypes.NameIdentifier, username) },
                 claims: new[]
                     {
                         new Claim(ClaimTypes.NameIdentifier, user.Username),

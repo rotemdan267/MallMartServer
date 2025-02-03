@@ -10,7 +10,6 @@ namespace MallMartAPI.Repos
         Task<User> GetUserByUsername(string username);
         Task<Customer> GetCustomerByUser(User user);
         Task<List<Customer>> GetCustomers();
-        //Task<List<Region>> GetRegionsWithEmployees();
         Task<Employee> GetEmployeeById(int id);
         Task<Address> GetAddressById(int id);
         Task<Employee> GetEmployeeByUser(User user);
@@ -23,6 +22,8 @@ namespace MallMartAPI.Repos
         Task<List<Order>> GetOrdersByEmployee(Employee employee);
         Task<List<Order>> GetOrdersByCustomerId(int id);
         Task<Product> GetProductById(int id);
+        Task<List<Product>> GetProductsAlmostOutOfStock();
+        Task<List<Product>> GetProductsRatedHigh();
         Task<List<Product>> GetProductsOrderByCategory();
         Task<Region> GetRegionByName(string name);
         Task<Order> SaveOrder(Order order);

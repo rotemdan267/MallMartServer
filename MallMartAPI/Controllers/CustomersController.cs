@@ -25,7 +25,6 @@ namespace MallMartAPI.Controllers
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> GetAll()
         {
-            //var items = await repo.GetAll();
             var items = await dBManager.GetCustomers();
 
             if (items.Count() == 0)
@@ -38,7 +37,6 @@ namespace MallMartAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            //var item = await repo.GetById(id);
             var item = await dBManager.GetCustomerById(id);
             if (item is null)
             {

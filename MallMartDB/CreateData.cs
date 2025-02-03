@@ -338,7 +338,6 @@ namespace MallMartDB
             BinaryReader br;
             byte[] image = null;
 
-            //string pathStart = @"C:\Users\User\Desktop\האקר-יו\MallMart\MallMartServer\MallMartDB\assests\";
             string pathStart = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\..\MallMartDB\assests\";
             string pathEnd = @"-image.jpg";
             string path;

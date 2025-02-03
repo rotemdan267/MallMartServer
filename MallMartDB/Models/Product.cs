@@ -9,7 +9,7 @@ namespace MallMartDB.Models
         public Category? Category { get; set; }
         public float? UnitPrice { get; set; }
         public int? UnitsInStock { get; set; }
-        public int? UnitsOnOrder { get; set; }  // כמה יחידות הוזמנו ועדיין לא סופקו - בדרך...
+        public int? UnitsOnOrder { get; set; } // How many units were ordered and weren't delievered yet
         public string Description { get; set; }
         public string ImageLink { get; set; }
         public float? Rating { get; set; }

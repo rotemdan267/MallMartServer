@@ -38,8 +38,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MallMartDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MallMartConnectionString")));
 builder.Services.AddScoped<IDBManager,DBManager>();
 
-builder.Services.AddScoped<IGenericRepository<AcquisitionOrder>, GenericRepository<AcquisitionOrder>>();
-builder.Services.AddScoped<IGenericRepository<AcquisitionOrderLine>, GenericRepository<AcquisitionOrderLine>>();
 builder.Services.AddScoped<IGenericRepository<Address>, GenericRepository<Address>>();
 builder.Services.AddScoped<IGenericRepository<Category>, GenericRepository<Category>>();
 builder.Services.AddScoped<IGenericRepository<Customer>, GenericRepository<Customer>>();
@@ -49,7 +47,6 @@ builder.Services.AddScoped<IGenericRepository<Order>, GenericRepository<Order>>(
 builder.Services.AddScoped<IGenericRepository<OrderLine>, GenericRepository<OrderLine>>();
 builder.Services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
 builder.Services.AddScoped<IGenericRepository<Region>, GenericRepository<Region>>();
-builder.Services.AddScoped<IGenericRepository<Supplier>, GenericRepository<Supplier>>();
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IGenericRepository<UserImage>, GenericRepository<UserImage>>();
 

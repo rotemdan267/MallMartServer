@@ -27,6 +27,5 @@ namespace MallMartLogic
             }
             return result;
         }
-
     }
 }

@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 namespace MallMartAPI.Repos
 {
-    // קלאס עבור שאר ה-
-    // Queries
-    // ופעולות ב-DB
-    // שלא כלולים ב-GenericRepository
+
+    // A class for queries and DB actions who are not included in the GenericRepository
     public class DBManager : IDBManager
     {
         private MallMartDBContext db = null;
@@ -28,13 +26,6 @@ namespace MallMartAPI.Repos
 
             return employees;
         }
-
-        //public async Task<List<Region>> GetRegionsWithEmployees()
-        //{
-        //    List<Region> regions = await db.Regions.Include(r => r.Employees).ToListAsync();
-
-        //    return regions;
-        //}
 
         public async Task<List<Customer>> GetCustomers()
         {
@@ -63,6 +54,25 @@ namespace MallMartAPI.Repos
 
             return product;
         }
+
+        public async Task<List<Product>> GetProductsAlmostOutOfStock()
+        {
+            List<Product> products = await db.Products.Where(p => p.UnitsInStock < 10)
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.UnitsInStock)
+                .ToListAsync();
+            return products;
+        }
+
+        public async Task<List<Product>> GetProductsRatedHigh()
+        {
+            List<Product> products = await db.Products.Where(p => p.Rating > 4.5)
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.Rating)
+                .ToListAsync();
+            return products;
+        }
+
         public async Task<User> GetUserByUsername(string username)
         {
             User user = await db.Users.Where(u => u.Username == username)
@@ -114,7 +124,7 @@ namespace MallMartAPI.Repos
             return employee;
         }
         /// <summary>
-        /// הייתי צריך לקבל את ה"עובד" יחד עם הישויות שמתחתיו, לכן בניתי פונקציה נוספת מלבד הג'נריק ריפו
+        /// Gets "Emplyee" with "User", "Manager, "Employees", "DeliveryRegions" and "Region" from "DeliveryRegions"
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -340,21 +350,18 @@ namespace MallMartAPI.Repos
         #region Delete DB Methods
 
         public async Task DeleteEmployeeRegion(EmployeeRegion employeeRegion)
-        { // בריפוזיטורי הסטטי מתודת "מחיקה" מקבלת 
-          // id
-          // אחד, ולטבלה הזו יש שניים...
-          // לכן בניתי לה בנפרד
+        { 
+          // EmployeeRegion has 2 "Id"s so it doesn't work with the generic Delete method from GenericRepository
+          // so I had to build a specific Delete method for it
 
             db.Entry(employeeRegion).State = EntityState.Deleted;
             await db.SaveChangesAsync();
         }
 
         public async Task DeleteOrderLine(OrderLine orderLine)
-        { // בריפוזיטורי הסטטי מתודת "מחיקה" מקבלת 
-          // id
-          // אחד, ולטבלה הזו יש שניים...
-          // לכן בניתי לה בנפרד
-
+        { 
+          // OrderLine has 2 "Id"s so it doesn't work with the generic Delete method from GenericRepository
+          // so I had to build a specific Delete method for it
             db.Entry(orderLine).State = EntityState.Deleted;
             await db.SaveChangesAsync();
         }

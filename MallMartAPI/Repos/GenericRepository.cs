@@ -12,11 +12,6 @@ namespace MallMartAPI.Repos
             this._context = context;
             table = context.Set<T>();
         }
-        //public GenericRepository(MallMartDBContext _context)
-        //{
-        //    this._context = _context;
-        //    table = _context.Set<T>();
-        //}
         public async Task<IEnumerable<T>> GetAll()
         {
             var records = await table.ToListAsync();

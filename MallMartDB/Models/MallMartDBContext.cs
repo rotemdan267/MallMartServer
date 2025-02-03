@@ -17,36 +17,11 @@ namespace MallMartDB.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableSensitiveDataLogging(true);
-            //            if (!optionsBuilder.IsConfigured)
-            //            {
-            //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-            //                optionsBuilder.UseSqlServer("Data Source=DESKTOP-R79989A\\SQLEXPRESS;Initial Catalog=MallMartDB;Integrated Security=True");
-            //            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             OnModelCreatingPartial(modelBuilder);
-
-            //modelBuilder.Entity<AcquisitionOrderLine>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.AcquisitionOrderId, e.ProductId });
-            //});
-
-            //modelBuilder.Entity<EmployeeRegion>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.EmployeeId, e.RegionId });
-            //});
-
-            //modelBuilder.Entity<OrderLine>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.OrderId, e.ProductId });
-            //});
-
-            //modelBuilder.Entity<Product>(entity =>
-            //{
-            //    entity.Property(e => e.Category).IsRequired(false);
-            //});
 
             modelBuilder.Entity<Address>(entity =>
             {
@@ -100,17 +75,12 @@ namespace MallMartDB.Models
             List<Order> orders = createData.GetOrders(lines, employees, customers, products);
             modelBuilder.Entity<Order>().HasData(orders);
             modelBuilder.Entity<OrderLine>().HasData(lines);
-
-
-
-
-
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-        public DbSet<AcquisitionOrder> AcquisitionOrders { get; set; }
-        public DbSet<AcquisitionOrderLine> AcquisitionOrderLines { get; set; }
+        //public DbSet<AcquisitionOrder> AcquisitionOrders { get; set; }
+        //public DbSet<AcquisitionOrderLine> AcquisitionOrderLines { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -119,7 +89,7 @@ namespace MallMartDB.Models
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Region> Regions { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
+        //public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserImage> UserImages { get; set; }
         public DbSet<EmployeeRegion> EmployeeRegions { get; set; }
