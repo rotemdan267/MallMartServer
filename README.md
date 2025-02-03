@@ -17,13 +17,16 @@
 לקוחות: 
 
    Username:  Shovav
+   
    Password:  805060
    
    Username:  Mor123
+   
    Password:  465984
    
 מנהל:
    
    Username:  rotemdan
+   
    Password:  123456
 
